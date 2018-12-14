@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 
 
 
-export default class Home extends React.Component {
+export default class Publicacion extends React.Component {
 
   constructor(){
     super();
@@ -11,13 +11,12 @@ export default class Home extends React.Component {
   }
 
   render() {
-    console.log(this.props.navigation);
-    const { navigation } =this.props
+    const { navigation } = this.props;
+    
     return (
       <View style={styles.container}>
-        <Text>Home</Text>
-        <Button title='Autor' onPress={()=>{navigation.navigate('Autor')}}/>
-        <Button title='Comentarios' onPress={()=>{navigation.navigate('Comentarios')}}/>
+        <Text>Publicacion</Text>
+      <Button title='Comentarios' onPress={()=>{navigation.navigate('Comentarios')}}/>
       </View>
     );
   }

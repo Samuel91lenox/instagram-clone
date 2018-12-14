@@ -1,14 +1,14 @@
 import React from 'react';
 import { createBottomTabNavigator } from 'react-navigation';
 import Add from './Add';
-import Home from './Home';
+import { StackHome } from './StackHome';
 import Search from './Search';
 import Follow from './Follow';
 import Profile from './Profile';
 
 const RutasAutenticadas = createBottomTabNavigator({
   Home:{
-    screen: Home,
+    screen: StackHome,
   },
   Search: {
     screen:Search,
@@ -22,6 +22,10 @@ const RutasAutenticadas = createBottomTabNavigator({
   Profile:{
     screen: Profile,
   },
-});
+},
+{
+  tabBarPosition: 'bottom',
+}
+);
 
 export { RutasAutenticadas };
