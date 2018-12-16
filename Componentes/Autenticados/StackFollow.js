@@ -1,12 +1,18 @@
 import { createStackNavigator } from 'react-navigation';
-import Publicacion from './Publicacion';
-import Search from './Search';
+import { TabFollow } from './TabFollow';
 import Autor from './Profile';
+import Publicacion from './Publicacion';
 import Comentarios from './Comentarios';
 
-const StackSearch = createStackNavigator({
-  Search: {
-    screen: Search,
+const StackFollow = createStackNavigator({
+  TabFollow:{
+    screen: TabFollow,
+    navigationOptions:{
+      header: null,
+    }
+  },
+  Autor:{
+    screen: Autor,
   },
   Publicacion:{
     screen: Publicacion,
@@ -14,16 +20,13 @@ const StackSearch = createStackNavigator({
   Comentarios:{
     screen: Comentarios,
   },
-  Autor:{
-    screen: Autor,
-  },
 });
 
 //Ocultar navbar en comentarios > v2
-StackSearch .navigationOptions = ({ navigation }) => {
+StackFollow .navigationOptions = ({ navigation }) => {
 let { routeName } = navigation.state.routes[navigation.state.index];
 let navigationOptions = {};
   if (routeName === 'Comentarios') {    navigationOptions.tabBarVisible = false;  }
   return navigationOptions;};
 
-export { StackSearch };
+export { StackFollow };

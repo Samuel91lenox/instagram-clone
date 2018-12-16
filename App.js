@@ -3,6 +3,8 @@ import { StyleSheet, Text, View } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { RutasNoAutenticadas } from './Componentes/NoAutenticados/RutasNoAutenticadas';
 import { RutasAutenticadas } from './Componentes/Autenticados/RutasAutenticadas';
+import { Provider } from 'react-redux';
+import Store from './Store/Store';
 
 const RutaNoAutenticada = createAppContainer(RutasNoAutenticadas);
 const RutaAutenticada = createAppContainer(RutasAutenticadas);
@@ -21,7 +23,9 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <RutaAutenticada/>
+        <Provider store={Store}>
+          <RutaNoAutenticada/>
+        </Provider>
       </View>
     );
   }

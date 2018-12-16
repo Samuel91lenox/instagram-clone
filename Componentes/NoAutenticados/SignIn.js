@@ -3,11 +3,7 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 
 
 
-export default class Comentarios extends React.Component {
-
-  static navigationOptions = {
-    tabBarVisible: false,
-  };
+export default class SignIn extends React.Component {
 
   constructor(){
     super();
@@ -18,8 +14,8 @@ export default class Comentarios extends React.Component {
     const { navigation } = this.props;
     return (
       <View style={styles.container}>
-        <Text>Comentarios</Text>
-      <Button title='Autor' onPress={()=>{navigation.navigate('Autor')}}/>
+        <Text>SignIn</Text>
+        <Button title='SignUp' onPress={()=>{navigation.navigate('SignUp')}}/>
       </View>
     );
   }

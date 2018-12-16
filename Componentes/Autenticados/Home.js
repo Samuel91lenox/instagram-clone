@@ -12,7 +12,7 @@ export default class Home extends React.Component {
 
   render() {
     console.log(this.props.navigation);
-    const { navigation } =this.props
+    const { navigation } =this.props;
     return (
       <View style={styles.container}>
         <Text>Home</Text>

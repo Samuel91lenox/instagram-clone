@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button } from 'react-native';
 
 
 
@@ -11,9 +11,11 @@ export default class Follow extends React.Component {
   }
 
   render() {
+    const { navigation } = this.props;
     return (
       <View style={styles.container}>
         <Text>Follow</Text>
+        <Button title='Autor' onPress={()=>{navigation.navigate('Autor')}}/>
       </View>
     );
   }
