@@ -5,16 +5,18 @@ import SignUpForm from './Formas/SignUpForm';
 
 class SignUp extends React.Component {
 
+  registroDeUsuario = (values) => {
+    console.log(values);
+    this.props.registro(values);
+  };
+
 
   render() {
     console.log(this.props.numero);
     const { navigation } = this.props;
     return (
       <View style={styles.container}>
-        <Text>SignUp</Text>
-        <SignUpForm/>
-        <TextInput placeholder="correo@correo.com"/>
-        <Button title='Aumentar' onPress={this.props.aumentar}/>
+        <SignUpForm registro={this.registroDeUsuario}/>
         <Button title='SignIn' onPress={()=>{navigation.goBack()}}/>
       </View>
     );
@@ -24,9 +26,9 @@ class SignUp extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#90EE90',
     justifyContent:'center',
-    alignItems:'center',
+    paddingHorizontal: 16,
   },
 });
 
@@ -38,8 +40,8 @@ const mapStateToProps = (state)=>{
 
 const mapDispatchToProps = (dispatch)=>{
   return {
-    aumentar:()=>{
-      dispatch({type: 'AUMENTAR_REDUCER_PRUEBA'})
+    registro:(values)=>{
+      dispatch({type: 'REGISTRO', datos: values})
     }
   }
 };
