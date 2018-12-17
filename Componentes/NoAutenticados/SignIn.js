@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import { connect } from 'react-redux';
 import SignInForm from './Formas/SignInForm';
-
+import {actionLogin} from '../../Store/ACCIONES';
 
 class SignIn extends React.Component {
 
@@ -38,7 +38,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
       login: (datos) => {
-        dispatch({ type:'LOGIN', datos });
+        dispatch(actionLogin(datos));
       },
   });
 

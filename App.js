@@ -5,6 +5,7 @@ import { RutasNoAutenticadas } from './Componentes/NoAutenticados/RutasNoAutenti
 import { RutasAutenticadas } from './Componentes/Autenticados/RutasAutenticadas';
 import { Provider } from 'react-redux';
 import Store from './Store/Store';
+import Seleccion from './Seleccion';
 
 const RutaNoAutenticada = createAppContainer(RutasNoAutenticadas);
 const RutaAutenticada = createAppContainer(RutasAutenticadas);
@@ -24,7 +25,7 @@ export default class App extends React.Component {
     return (
       <View style={styles.container}>
         <Provider store={Store}>
-          <RutaAutenticada/>
+          <Seleccion/>
         </Provider>
       </View>
     );
