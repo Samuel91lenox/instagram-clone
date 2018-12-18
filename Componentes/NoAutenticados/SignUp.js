@@ -2,9 +2,14 @@ import React from 'react';
 import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
 import { connect } from 'react-redux';
 import SignUpForm from './Formas/SignUpForm';
-import { actionRegistro } from '../../Store/ACCIONES';
+import { actionRegistro,cargarImagenSignUp,limpiarImagenSignUp } from '../../Store/ACCIONES';
+import SeleccionarImagen from '../SeleccionarImagen';
 
 class SignUp extends React.Component {
+
+  componentWillUnmount(){
+    this.props.limpiarImagen();
+  }
 
   registroDeUsuario = (values) => {
     console.log(values);
@@ -17,6 +22,7 @@ class SignUp extends React.Component {
     const { navigation } = this.props;
     return (
       <View style={styles.container}>
+        <SeleccionarImagen imagen={this.props.imagen.imagen} cargar={this.props.cargarImagen}/>
         <SignUpForm registro={this.registroDeUsuario}/>
         <Button title='SignIn' onPress={()=>{navigation.goBack()}}/>
       </View>
@@ -27,7 +33,7 @@ class SignUp extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#90EE90',
+    backgroundColor: '#ffffff',
     justifyContent:'center',
     paddingHorizontal: 16,
   },
@@ -36,13 +42,20 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state)=>{
   return {
     numero: state.reducerPrueba,
+    imagen: state.reducerImagenSignUp,
   }
 };
 
 const mapDispatchToProps = (dispatch)=>{
   return {
     registro:(values)=>{
-      dispatch(actionRegistro(values))
+      dispatch(actionRegistro(values));
+    },
+    cargarImagen: (imagen)=>{
+      dispatch(cargarImagenSignUp(imagen));
+    },
+    limpiarImagen: ()=>{
+      dispatch(limpiarImagenSignUp());
     }
   }
 };

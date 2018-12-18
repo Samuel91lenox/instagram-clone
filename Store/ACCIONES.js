@@ -18,3 +18,12 @@ export const actionEstablecerSesion = usuario => ({
 export const actionCerrarSesion = datos => ({
   type: CONSTANTES.CERRAR_SESION,
 });
+
+export const cargarImagenSignUp = (imagen) => ({
+  type: CONSTANTES.CARGAR_IMAGEN_SIGNUP,
+  imagen,
+});
+
+export const limpiarImagenSignUp = () => ({
+  type: CONSTANTES.LIMPIAR_IMAGEN_SIGNUP,
+});

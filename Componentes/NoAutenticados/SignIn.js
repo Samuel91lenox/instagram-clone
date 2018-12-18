@@ -24,7 +24,7 @@ class SignIn extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#90EE90',
+    backgroundColor: '#ffffff',
     justifyContent:'center',
     paddingHorizontal:16,
   },
