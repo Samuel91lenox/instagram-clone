@@ -5,6 +5,8 @@
   CERRAR_SESION: 'CERRAR_SESION',
   LIMPIAR_IMAGEN_SIGNUP: 'LIMPIAR_IMAGEN_SIGNUP',
   CARGAR_IMAGEN_SIGNUP: 'CARGAR_IMAGEN_SIGNUP',
+  CLOUDINARY_NAME:'https://api.cloudinary.com/v1_1/db0yho9kx/image/upload',
+  CLOUDINARY_PRESET:'tnazz5wk',
 };
 
 export default CONSTANTES;

@@ -19,8 +19,21 @@ const fieldNombre = (props) => (
     </View>
   );
 
-const validate = (values) => {
+  const fieldImagen = props =>
+    <View>
+      <View>
+        {props.meta.touched && props.meta.error && <Text style={styles.errors}>{props.meta.error}</Text>}
+      </View>
+    </View>;
+
+
+const validate = (values,props) => {
   const errors = {};
+
+  if(!props.imagen){
+    errors.imagen = 'imagen requerida';
+  }
+
   if (!values.nombre) {
     errors.nombre = 'requerido';
   } else if (values.nombre.length < 5) {
@@ -54,25 +67,13 @@ const validate = (values) => {
 
 const SignUpForm = (props) => (
     <View style={styles.container}>
+      <Field name='imagen' component={fieldImagen}/>
       <Field name="nombre" component={fieldNombre} ph='nombre' />
       <Field name="correo" component={fieldNombre} ph='correo@correo.com' />
       <Field name="password" component={fieldNombre} ph='*******' />
       <Field name="confirmacion" component={fieldNombre} ph='*******' />
       <Button title="Resgistrar" onPress={props.handleSubmit(
           props.registro,
-      //   (values) => {
-      //     console.log(values);
-      //     autenticacion.createUserWithEmailAndPassword(values.correo, values.password)
-      //       .then((success) => {
-      //         console.log(success);
-      //       })
-      //       .catch(function(error) {
-      //         var errorCode = error.code;
-      //         var errorMessage = error.message;
-      //         console.log(errorCode);
-      //         console.log(errorMessage);
-      //       });
-      //   }
        )
       }
       />

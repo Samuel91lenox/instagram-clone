@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
 import { connect } from 'react-redux';
 import SignUpForm from './Formas/SignUpForm';
+import { blur, change } from 'redux-form';
 import { actionRegistro,cargarImagenSignUp,limpiarImagenSignUp } from '../../Store/ACCIONES';
 import SeleccionarImagen from '../SeleccionarImagen';
 
@@ -23,7 +24,7 @@ class SignUp extends React.Component {
     return (
       <View style={styles.container}>
         <SeleccionarImagen imagen={this.props.imagen.imagen} cargar={this.props.cargarImagen}/>
-        <SignUpForm registro={this.registroDeUsuario}/>
+        <SignUpForm registro={this.registroDeUsuario} imagen={this.props.imagen.imagen}/>
         <Button title='SignIn' onPress={()=>{navigation.goBack()}}/>
       </View>
     );
@@ -53,6 +54,7 @@ const mapDispatchToProps = (dispatch)=>{
     },
     cargarImagen: (imagen)=>{
       dispatch(cargarImagenSignUp(imagen));
+      dispatch(blur('SignUpForm','imagen', Date.now()));
     },
     limpiarImagen: ()=>{
       dispatch(limpiarImagenSignUp());
