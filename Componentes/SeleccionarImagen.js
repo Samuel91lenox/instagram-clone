@@ -38,15 +38,17 @@ const SeleccionarImagen = (props)=>{
 
     };
 
+    const radius = {borderRadius: props.radius ? 0 : 80};
+
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <TouchableOpacity onPress={seleccionarImagen}>
 
       {
         props.imagen ? (
-        <Image source={{uri: props.imagen.uri}} style={{width: 160, height:160, borderRadius:80}}/>
+        <Image source={{uri: props.imagen.uri}} style={{width: 160, height:160, ...radius}}/>
       ):(
-        <Image source={require('../assets/imagen.jpg')} style={{width: 160, height:160, borderRadius:80}}/>
+        <Image source={require('../assets/imagen.jpg')} style={{width: 160, height:160, ...radius}}/>
       )
     }
 

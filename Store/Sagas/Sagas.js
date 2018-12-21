@@ -56,6 +56,43 @@ function* sagaRegistro(values){
   };
 }
 
+const escribirFirebase = ({width, height, secure_url, uid}, texto="") => baseDeDatos.ref('publicaciones/')
+  .push(
+    {
+      width,
+      height,
+      secure_url,
+      uid,
+      texto,
+    }).then(response => response);
+
+    const escribirAutorPublicaciones = ({uid, key}) => baseDeDatos.ref(`autor-publicaciones/${uid}`)
+      .update({[key]: true}).then(response => response);
+
+function* sagaSubirPublicacion({values}){
+  try{
+    const imagen = yield select(state => state.reducerImagenPublicacion);
+    const usuario = yield select(state => state.reducerSesion);
+    const { uid } = usuario;
+    console.log(uid)
+    const resultadoImagen = yield call(registroFotoCloudinary, imagen);
+    const { width, height, secure_url} = resultadoImagen;
+    const parametrosImagen = {
+      width,
+      height,
+      secure_url,
+      uid,
+    };
+    const escribirEnFirebase = yield call(escribirFirebase, parametrosImagen, values.texto);
+    const { key } = escribirEnFirebase;
+    const parametrosAutorPublicaciones = { uid, key };
+    const resultadoEscribirAutorPublicaciones = yield call(escribirAutorPublicaciones, parametrosAutorPublicaciones);
+    console.log(resultadoEscribirAutorPublicaciones);
+  }catch(error){
+    console.log(error);
+  }
+}
+
 
 
 function* sagaLogin(values){
@@ -73,6 +110,7 @@ export default function* funcionPrimaria(){
 
   yield takeEvery(CONSTANTES.REGISTRO, sagaRegistro);
   yield takeEvery(CONSTANTES.LOGIN, sagaLogin);
+  yield takeEvery(CONSTANTES.SUBIR_PUBLICACION, sagaSubirPublicacion)
   // yield ES6
   console.log('Desde nuestra funcion generadora');
 }

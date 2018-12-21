@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "instagram-clone",
-    "displayName": "instagram-clone",
+    "slug": "instagram-clone",
     "privacy": "public",
     "sdkVersion": "31.0.0",
     "platforms": [
