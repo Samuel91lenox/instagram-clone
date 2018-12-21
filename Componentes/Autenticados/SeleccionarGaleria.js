@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, Alert } from 'react-native';
 import  SeleccionarImagen  from '../SeleccionarImagen';
 import SeleccionarGaleriaForm from './SeleccionarGaleriaForm';
 import { connect } from 'react-redux';
@@ -20,6 +20,9 @@ class SeleccionarGaleria extends React.Component {
     if(this.props.estadoSubirPublicacion !== nextProps.estadoSubirPublicacion){
       switch (nextProps.estadoSubirPublicacion) {
         case 'EXITO':
+        Alert.alert('Exito', 'La publicacion fue realizada correctamente',[{text:'Ok',  onPress=()=> {
+          this.props.limpiarEstadoPublicacion();
+        } }]);
           this.props.navigation.goBack();
           break;
           case 'ERROR':
@@ -73,6 +76,9 @@ const mapDispatchToProps = dispatch=>({
     },
     limpiarImagen: () => {
       dispatch(limpiarImagenPublicacion());
+    },
+    limpiarEstadoPublicacion: () => {
+      dispatch(actionLimpiarSubirPublicacion());
     }
 });
 
