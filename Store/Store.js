@@ -46,9 +46,41 @@ const reducerImagenPublicacion = (state={imagen:null},action) => {
   }
 };
 
+const reducerPublicacionesDescargadas = (state=[], action) => {
+  switch (action.type) {
+    case CONSTANTES.AGREGAR_PUBLICACIONES_STORE:
+      return [...state, ...action.publicaciones];
+    default:
+      return state;
+  }
+};
+
+const reducerAutoresDescargados = (state=[], action) => {
+  switch (action.type) {
+    case CONSTANTES.AGREGAR_AUTORES_STORE:
+      return [...state, ...action.autores];
+    default:
+      return state;
+  }
+};
+
+const reducerExitoSubirPublicacion = (state={estado:null},action) => {
+  switch (action.type) {
+    case CONSTANTES.EXITO_SUBIR_PUBLICACION:
+      return {estado:'EXITO'};
+    case CONSTANTES.ERROR_SUBIR_PUBLICACION:
+      return {estado:'ERROR'};
+    default:
+      return state;
+  }
+};
+
 const sagaMiddleware = createSagaMiddleware();
 
 const reducers = combineReducers({
+  reducerExitoSubirPublicacion,
+  reducerAutoresDescargados,
+  reducerPublicacionesDescargadas,
   reducerImagenPublicacion,
   reducerSesion,
   reducerPrueba,
